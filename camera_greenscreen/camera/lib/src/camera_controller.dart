@@ -849,7 +849,7 @@ class CameraController extends ValueNotifier<CameraValue> {
     await CameraPlatform.instance.updateFilters(data);
   }
 
-  Future<List<int>> processedInputImage(Uint8List inputImage) async {
-    return await CameraPlatform.instance.processedInputImage(inputImage);
+  Future<String> processedInputImage(String inputImagePath) async {
+    return await CameraPlatform.instance.processedInputImage(inputImagePath);
   }
 }

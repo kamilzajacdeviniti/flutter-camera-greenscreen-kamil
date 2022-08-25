@@ -6,7 +6,7 @@ description: A Flutter plugin for controlling the camera. Supports previewing
 repository: https://github.com/kamilzajacdeviniti/flutter-camera-greenscreen-kamil/camera_greenscreen/camera
 
 issue_tracker: https://github.com/flutter/flutter/issues?q=is%3Aissue+is%3Aopen+label%3A%22p%3A+camera%22
-version: 0.9.4+52
+version: 0.9.4+53
 
 environment:
   sdk: ">=2.14.0 <3.0.0"
@@ -25,7 +25,7 @@ dependencies:
   camera_platform_interface:
     git:
       url: https://github.com/kamilzajacdeviniti/flutter-camera-greenscreen-kamil
-      ref: f26a5372d3d41aa2d64a26a82dce7940fcfffb27
+      ref: 6e65891b78606d886549ecb2401683560431cd47
       path: camera_greenscreen/camera_platform_interface
   #camera_web: ^0.2.1 
   flutter:
