@@ -103,13 +103,11 @@ abstract class CameraPlatform extends PlatformInterface {
   /// Implementations for this:
   /// - Should support all 4 orientations.
   Stream<DeviceOrientationChangedEvent> onDeviceOrientationChanged() {
-    throw UnimplementedError(
-        'onDeviceOrientationChanged() is not implemented.');
+    throw UnimplementedError('onDeviceOrientationChanged() is not implemented.');
   }
 
   /// Locks the capture orientation.
-  Future<void> lockCaptureOrientation(
-      int cameraId, DeviceOrientation orientation) {
+  Future<void> lockCaptureOrientation(int cameraId, DeviceOrientation orientation) {
     throw UnimplementedError('lockCaptureOrientation() is not implemented.');
   }
 
@@ -269,8 +267,12 @@ abstract class CameraPlatform extends PlatformInterface {
     throw UnimplementedError('disableFilters() is not implemented.');
   }
 
-   /// Changes parameters for filters, eg: background  path and hue
+  /// Changes parameters for filters, eg: background  path and hue
   Future<void> updateFilters(Map data) {
     throw UnimplementedError('updateFilters() is not implemented.');
+  }
+
+  Future<void> test() {
+    throw UnimplementedError('test() is not implemented');
   }
 }
