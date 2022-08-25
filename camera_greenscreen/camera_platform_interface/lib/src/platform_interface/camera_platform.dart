@@ -4,6 +4,7 @@
 
 import 'dart:async';
 import 'dart:math';
+import 'dart:typed_data';
 
 import 'package:camera_platform_interface/camera_platform_interface.dart';
 import 'package:camera_platform_interface/src/events/device_event.dart';
@@ -272,7 +273,7 @@ abstract class CameraPlatform extends PlatformInterface {
     throw UnimplementedError('updateFilters() is not implemented.');
   }
 
-  Future<void> test() {
+  Future<List<int>> processedInputImage(Uint8List inputImage) {
     throw UnimplementedError('test() is not implemented');
   }
 }

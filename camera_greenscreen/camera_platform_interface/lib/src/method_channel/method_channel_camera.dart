@@ -4,6 +4,7 @@
 
 import 'dart:async';
 import 'dart:math';
+import 'dart:typed_data';
 
 import 'package:camera_platform_interface/camera_platform_interface.dart';
 import 'package:camera_platform_interface/src/events/device_event.dart';
@@ -529,8 +530,8 @@ class MethodChannelCamera extends CameraPlatform {
   }
 
   @override
-  Future<void> test() async {
-    await _channel.invokeMethod<void>('test');
+  Future<List<int>> processedInputImage(Uint8List inputImage) async {
+    return await _channel.invokeMethod<List<int>?>('processedInputImage', inputImage) ?? [];
   }
 
 /*
