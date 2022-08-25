@@ -168,7 +168,11 @@ public class FilterPipeline : NSObject {
     @available(iOS 11.0, *)
     //For filtering the still image
     //photo?.normalisedData() performs any input transform, eg: rotation
-    public func processImage(_ imageData: FlutterStandardTypedData) -> [UInt8]? {
+    public func processImage(_ dictionary: Dictionary<String,AnyObject>) -> [UInt8]? {
+        guard let imageData = dictionary["image"] as? FlutterStandardTypedData else {
+            print("Unable to cast image");
+            return nil
+        }
         let processedData = Data(imageData.data)
         let image = UIImage(data: processedData)
 

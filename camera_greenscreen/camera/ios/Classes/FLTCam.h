@@ -85,7 +85,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)enableFiltersWithResult:(FLTThreadSafeFlutterResult *)result;
 - (void)disableFiltersWithResult:(FLTThreadSafeFlutterResult *)result;
 - (void)updateFiltersWithResult:(FLTThreadSafeFlutterResult *)result with:(NSDictionary *) params;
-- (void)processedInputImageWithResult:(FLTThreadSafeFlutterResult *)result with:(FlutterStandardTypedData *) params;
+- (void)processedInputImageWithResult:(FLTThreadSafeFlutterResult *)result with:(NSDictionary *) params;
 
 
 @end

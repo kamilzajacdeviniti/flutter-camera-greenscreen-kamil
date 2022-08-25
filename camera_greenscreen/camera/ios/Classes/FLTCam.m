@@ -874,7 +874,7 @@ NSString *const errorMethod = @"error";
     [result sendSuccess];
 } 
 
-- (void)processedInputImageWithResult:(FLTThreadSafeFlutterResult *)result with:(FlutterStandardTypedData *) params {
+- (void)processedInputImageWithResult:(FLTThreadSafeFlutterResult *)result with:(NSDictionary *) params {
     [result sendSuccessWithData:[self.filterPipeline processImage: params]];
 } 
 

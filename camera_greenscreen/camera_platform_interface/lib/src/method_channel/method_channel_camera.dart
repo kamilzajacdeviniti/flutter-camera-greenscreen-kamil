@@ -531,7 +531,8 @@ class MethodChannelCamera extends CameraPlatform {
 
   @override
   Future<List<int>> processedInputImage(Uint8List inputImage) async {
-    return await _channel.invokeMethod<List<int>?>('processedInputImage', inputImage) ?? [];
+    final data = {'image': inputImage};
+    return await _channel.invokeMethod<List<int>?>('processedInputImage', data) ?? [];
   }
 
 /*
