@@ -273,7 +273,7 @@ abstract class CameraPlatform extends PlatformInterface {
     throw UnimplementedError('updateFilters() is not implemented.');
   }
 
-  Future<List<int>> processedInputImage(Uint8List inputImage) {
-    throw UnimplementedError('test() is not implemented');
+  Future<String> processedInputImage(String inputImagePath) {
+    throw UnimplementedError('processedInputImage() is not implemented');
   }
 }

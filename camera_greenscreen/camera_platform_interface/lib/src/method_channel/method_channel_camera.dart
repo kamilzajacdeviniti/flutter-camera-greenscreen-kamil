@@ -530,9 +530,9 @@ class MethodChannelCamera extends CameraPlatform {
   }
 
   @override
-  Future<List<int>> processedInputImage(Uint8List inputImage) async {
-    final data = {'image': inputImage};
-    return await _channel.invokeMethod<List<int>?>('processedInputImage', data) ?? [];
+  Future<String> processedInputImage(String inputImagePath) async {
+    final data = {'path': inputImagePath};
+    return await _channel.invokeMethod<String>('processedInputImage', data) ?? '';
   }
 
 /*

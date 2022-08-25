@@ -168,20 +168,18 @@ public class FilterPipeline : NSObject {
     @available(iOS 11.0, *)
     //For filtering the still image
     //photo?.normalisedData() performs any input transform, eg: rotation
-    public func processImage(_ dictionary: Dictionary<String,AnyObject>) -> [UInt8]? {
-        guard let imageData = dictionary["image"] as? FlutterStandardTypedData else {
+    public func processImage(_ dictionary: Dictionary<String,AnyObject>) -> String? {
+        guard let imagePath = dictionary["path"] as? String, 
+            let image = FileManager.default.retreive(filename: imagePath) else {
             print("Unable to cast image");
             return nil
         }
-        let processedData = Data(imageData.data)
-        let image = UIImage(data: processedData)
-
         var orientationMetadata:UInt32 = FilterConstants.defaultOrientationPortraitUp
         // if let orientationInt = photo?.metadata[String(kCGImagePropertyOrientation)] as? UInt32 {
         //    orientationMetadata = orientationInt
         // }
     
-        guard let rawPhoto =  image?.cgImage() else { return nil }
+        guard let rawPhoto =  image?.cgImage else { return nil }
         let rawCIImage  = CIImage(cgImage: rawPhoto)
         let cameraImage = rawCIImage.oriented(forExifOrientation: Int32(orientationMetadata))
         
@@ -192,9 +190,10 @@ public class FilterPipeline : NSObject {
               let colourspace = CGColorSpace(name:CGColorSpace.sRGB)
         else { return nil }
         guard
-            let data = ciContext.jpegRepresentation(of: filtered, colorSpace:colourspace)
+            let data = ciContext.jpegRepresentation(of: filtered, colorSpace:colourspace), let convertedImage = UIImage(data: data)
         else { return nil }
-        return [UInt8](data)
+        FileManager.default.save(filename: "converted.jpg", image: convertedImage)
+        return "converted.jpg"
     }
     
     
@@ -314,6 +313,12 @@ extension FileManager {
               sourceData = nil
           }
           sourceData = nil
+    }
+
+    func retreive(filename: String) -> UIImage? {
+        let imageURL = URL(fileURLWithPath: applicationDocumentsDirectory()).appendingPathComponent(filename)
+        let image = UIImage(contentsOfFile: imageURL.path)
+        return image
     }
     
 }
