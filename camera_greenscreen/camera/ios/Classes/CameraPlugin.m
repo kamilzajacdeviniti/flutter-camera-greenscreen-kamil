@@ -277,9 +277,9 @@
         [_camera disableFiltersWithResult:result];
     } else if ([@"updateFilters"  isEqualToString:call.method]) {
         [_camera updateFiltersWithResult:result with:call.arguments] ;
-    }
-       
-      else {
+    } else if ([@"processedInputImage" isEqualToString:call.method]) {
+      [_camera processedInputImageWithResult: result with:call.arguments];
+    }  else {
       [result sendNotImplemented];
     }
   }

@@ -163,6 +163,35 @@ public class FilterPipeline : NSObject {
         else { return nil }
         return data as NSData?
     }
+
+    @objc
+    @available(iOS 11.0, *)
+    //For filtering the still image
+    //photo?.normalisedData() performs any input transform, eg: rotation
+    public func processImage(_ imageData: FlutterStandardTypedData) -> [UInt8]? {
+        let processedData = Data(imageData.data)
+        let image = UIImage(data: processedData)
+
+        var orientationMetadata:UInt32 = FilterConstants.defaultOrientationPortraitUp
+        // if let orientationInt = photo?.metadata[String(kCGImagePropertyOrientation)] as? UInt32 {
+        //    orientationMetadata = orientationInt
+        // }
+    
+        guard let rawPhoto =  image?.cgImage() else { return nil }
+        let rawCIImage  = CIImage(cgImage: rawPhoto)
+        let cameraImage = rawCIImage.oriented(forExifOrientation: Int32(orientationMetadata))
+        
+        if let background = backgroundCIImage {
+            scaledBackgroundCIImage = transformBackgroundToFit(backgroundCIImage: background, cameraImage: cameraImage)
+        }
+        guard let filtered = applyFilters(inputImage: cameraImage),
+              let colourspace = CGColorSpace(name:CGColorSpace.sRGB)
+        else { return nil }
+        guard
+            let data = ciContext.jpegRepresentation(of: filtered, colorSpace:colourspace)
+        else { return nil }
+        return [UInt8](data)
+    }
     
     
     //MARK: - Apply filtering
