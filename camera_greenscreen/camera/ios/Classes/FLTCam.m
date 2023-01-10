@@ -858,11 +858,11 @@ NSString *const errorMethod = @"error";
 
 //Aardman_Animator: API extensions
 - (void)enableFiltersWithResult:(FLTThreadSafeFlutterResult *)result {
-    self.chromakeyEnabled = true;
+//    self.chromakeyEnabled = true;
     [result sendSuccess];
 }
 - (void)disableFiltersWithResult:(FLTThreadSafeFlutterResult *)result {
-    self.chromakeyEnabled = false;
+//    self.chromakeyEnabled = false;
     [result sendSuccess];
 }
  
